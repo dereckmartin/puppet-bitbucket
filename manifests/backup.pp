@@ -22,6 +22,7 @@ class bitbucket::backup(
   $javahome             = $bitbucket::javahome,
   $keep_age             = $bitbucket::backup_keep_age,
   $manage_usr_grp       = $bitbucket::manage_usr_grp,
+  $backup_timeout       = $bitbucket::backup_timeout,
   ) {
 
   if $manage_backup {
@@ -98,7 +99,7 @@ class bitbucket::backup(
     $backup_cmd = "${java_bin} -Dbitbucket.password='${backuppass}'\
  -Dbitbucket.user=\"${backupuser}\"\
  -Dbitbucket.baseUrl=\"http://localhost:${bitbucket::tomcat_port}\"\
- -Dbitbucket.home=${homedir} -Dbackup.home=${backup_home}/archives\
+ -Dbitbucket.home=${homedir} -Dbackup.home=${backup_home}/archives -Dbackup.server.timeout=${backup_timeout}\
  -jar ${appdir}/bitbucket-backup-client.jar"
 
     cron { 'Backup Bitbucket':

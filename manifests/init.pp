@@ -63,6 +63,7 @@ class bitbucket(
   $backup_schedule_hour   = '5',
   $backup_schedule_minute = '0',
   $backup_keep_age        = '4w',
+  $backup_timeout         = '300',
 
   # Manage service
   $service_manage = true,
